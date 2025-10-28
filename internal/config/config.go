@@ -18,6 +18,7 @@ type Config struct {
 	GuestPort    int    `yaml:"guestPort"`
 	HostPortBase int    `yaml:"hostPortBase"`
 	NameBase     string `yaml:"nameBase"`
+	BackendType  string `yaml:"backendType"`
 }
 
 func (conf *Config) Validate() error {

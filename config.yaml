@@ -8,3 +8,4 @@ ipBase: "192.168.56."
 guestPort: 6739
 hostPortBase: 11000
 nameBase: "node"
+backendType: "vagrant"
