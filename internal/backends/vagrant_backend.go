@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/bmatcuk/go-vagrant"
-	"github.com/c12s/wormhole/internal/types"
+	"github.com/c12s/wormhole/internal/config"
 )
 
 type VagrantBackend struct {
@@ -20,7 +20,7 @@ func NewVagrantBackend() (*VagrantBackend, error) {
 	return &VagrantBackend{client: client}, nil
 }
 
-func (v *VagrantBackend) Setup(conf *types.Config) error {
+func (v *VagrantBackend) Setup(conf *config.Config) error {
 	err := GenerateVagrantfile(conf)
 	if err != nil {
 		return fmt.Errorf("setup VMs: %w", err)

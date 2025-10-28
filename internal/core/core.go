@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/c12s/wormhole/internal/backends"
-	"github.com/c12s/wormhole/internal/types"
+	"github.com/c12s/wormhole/internal/config"
 )
 
 type Backend interface {
-	Setup(conf *types.Config) error
+	Setup(conf *config.Config) error
 	Create(vms ...string) error
 	Stop(vms ...string) error
 	Resume(vms ...string) error

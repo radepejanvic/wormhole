@@ -6,7 +6,7 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/c12s/wormhole/internal/types"
+	"github.com/c12s/wormhole/internal/config"
 )
 
 //go:embed vagrantfile_template.rb
@@ -32,7 +32,7 @@ type TemplateData struct {
 	VMs        []VM
 }
 
-func newTemplateDataFromConfig(conf *types.Config) *TemplateData {
+func newTemplateDataFromConfig(conf *config.Config) *TemplateData {
 	vms := make([]VM, conf.VMCount)
 
 	for i := 0; i < conf.VMCount; i++ {
@@ -55,7 +55,7 @@ func newTemplateDataFromConfig(conf *types.Config) *TemplateData {
 	}
 }
 
-func GenerateVagrantfile(conf *types.Config) error {
+func GenerateVagrantfile(conf *config.Config) error {
 	var tmpl = template.Must(template.New("vagrantfile").Parse(vagrantfileTemplate))
 
 	var path = fmt.Sprintf("%s/Vagrantfile", vagrantfileDir)

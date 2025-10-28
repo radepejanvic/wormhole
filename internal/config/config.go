@@ -1,7 +1,10 @@
-package types
+package config
 
 import (
 	"fmt"
+	"os"
+
+	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
@@ -46,4 +49,24 @@ func (conf *Config) Validate() error {
 		return fmt.Errorf("hostPortBase must be between 1024 and 65535")
 	}
 	return nil
+}
+
+func LoadFromYaml(path string) (*Config, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("read file: %w", err)
+	}
+
+	var conf Config
+	err = yaml.Unmarshal(data, &conf)
+	if err != nil {
+		return nil, fmt.Errorf("unmarshal yaml: %w", err)
+	}
+
+	err = conf.Validate()
+	if err != nil {
+		return nil, fmt.Errorf("validate config: %w", err)
+	}
+
+	return &conf, nil
 }
