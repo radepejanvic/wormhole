@@ -15,4 +15,11 @@ Otherwise, only the specified VMs will be created.
 Example:
 - wormhole create
 - wormhole create node0 node1`
+
+	LongStopDesc = `Stops the virtual machines specified by name. 
+If no names are provided, all running virtual machines in the environment will be stopped.
+
+Example:
+- wormhole stop               
+- wormhole stop node0 node1`
 )

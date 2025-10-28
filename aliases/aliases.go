@@ -4,6 +4,7 @@ package aliases
 const (
 	SetupAlias  = "setup"
 	CreateAlias = "create"
+	StopAlias   = "stop"
 )
 
 // Specific command aliases
