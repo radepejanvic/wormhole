@@ -44,3 +44,83 @@ func (v *VagrantBackend) Create(vms ...string) error {
 
 	return nil
 }
+
+func (v *VagrantBackend) Stop(vms ...string) error {
+	cmd := v.client.Suspend()
+	cmd.Verbose = true
+	cmd.AdditionalArgs = vms
+
+	err := cmd.Run()
+	if err != nil {
+		return fmt.Errorf("stop VMs: %w", err)
+	}
+	if cmd.Error != nil {
+		return fmt.Errorf("vagrant error: %w", cmd.Error)
+	}
+
+	return nil
+}
+
+func (v *VagrantBackend) Resume(vms ...string) error {
+	cmd := v.client.Resume()
+	cmd.Verbose = true
+	cmd.AdditionalArgs = vms
+
+	err := cmd.Run()
+	if err != nil {
+		return fmt.Errorf("resume VMs: %w", err)
+	}
+	if cmd.Error != nil {
+		return fmt.Errorf("vagrant error: %w", cmd.Error)
+	}
+
+	return nil
+}
+
+func (v *VagrantBackend) Reload(vms ...string) error {
+	cmd := v.client.Reload()
+	cmd.Verbose = true
+	cmd.AdditionalArgs = vms
+
+	err := cmd.Run()
+	if err != nil {
+		return fmt.Errorf("resume VMs: %w", err)
+	}
+	if cmd.Error != nil {
+		return fmt.Errorf("vagrant error: %w", cmd.Error)
+	}
+
+	return nil
+}
+
+func (v *VagrantBackend) ShutDown(vms ...string) error {
+	cmd := v.client.Halt()
+	cmd.Verbose = true
+	cmd.AdditionalArgs = vms
+
+	err := cmd.Run()
+	if err != nil {
+		return fmt.Errorf("shut down VMs: %w", err)
+	}
+	if cmd.Error != nil {
+		return fmt.Errorf("vagrant error: %w", cmd.Error)
+	}
+
+	return nil
+}
+
+func (v *VagrantBackend) Destroy(vms ...string) error {
+	cmd := v.client.Destroy()
+	cmd.Verbose = true
+	cmd.AdditionalArgs = vms
+
+	err := cmd.Run()
+	if err != nil {
+		return fmt.Errorf("destroy VMs: %w", err)
+	}
+	if cmd.Error != nil {
+		return fmt.Errorf("vagrant error: %w", cmd.Error)
+	}
+
+	return nil
+}

@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 
-	"github.com/c12s/wormhole/internal/backends"
 	"github.com/c12s/wormhole/internal/core"
 )
 
@@ -13,7 +12,7 @@ func main() {
 		log.Fatalf("Failed to load config: %v", err)
 	}
 
-	backend, err := backends.NewVagrantBackend()
+	backend, err := core.NewBackend("vagrant")
 	if err != nil {
 		log.Fatalf("Vagrant Backend initialization failed: %v", err)
 	}
@@ -24,5 +23,25 @@ func main() {
 
 	if err := backend.Create(); err != nil {
 		log.Fatalf("Create failed: %v", err)
+	}
+
+	if err := backend.Stop("node0"); err != nil {
+		log.Fatalf("Stop failed: %v", err)
+	}
+
+	if err := backend.Resume("node0"); err != nil {
+		log.Fatalf("Resume failed: %v", err)
+	}
+
+	if err := backend.Reload("node0"); err != nil {
+		log.Fatalf("Reload failed: %v", err)
+	}
+
+	if err := backend.ShutDown("node0"); err != nil {
+		log.Fatalf("Shut down failed: %v", err)
+	}
+
+	if err := backend.Destroy("node0"); err != nil {
+		log.Fatalf("Destroy failed: %v", err)
 	}
 }
