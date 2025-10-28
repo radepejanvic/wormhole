@@ -10,11 +10,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var StopCmd = &cobra.Command{
-	Use:     "stop [VM names...]",
-	Aliases: aliases.StopAliases,
-	Short:   constants.ShortStopDesc,
-	Long:    constants.LongStopDesc,
+var ResumeCmd = &cobra.Command{
+	Use:     "resume [VM names...]",
+	Aliases: aliases.ResumeAliases,
+	Short:   constants.ShortResumeDesc,
+	Long:    constants.LongResumeDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 		backend, err := core.NewBackend("vagrant")
 		if err != nil {
@@ -22,12 +22,12 @@ var StopCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		err = backend.Stop(args...)
+		err = backend.Resume(args...)
 		if err != nil {
 			fmt.Println("Error:", err)
 			os.Exit(1)
 		}
 
-		fmt.Println("VMs stopped successfully!")
+		fmt.Println("VMs resumed successfully!")
 	},
 }

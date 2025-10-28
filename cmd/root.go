@@ -23,4 +23,5 @@ func init() {
 	RootCmd.AddCommand(SetupCmd)
 	RootCmd.AddCommand(CreateCmd)
 	RootCmd.AddCommand(StopCmd)
+	RootCmd.AddCommand(ResumeCmd)
 }

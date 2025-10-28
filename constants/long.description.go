@@ -7,10 +7,8 @@ the virtual environment according to the defined parameters.
 Example: 
 - wormhole setup --config ./path/to/config/file.yaml`
 
-	LongCreateDesc = `Creates the virtual machines defined in the YAML.
-
-If no VM names are provided, all VMs will be created. 
-Otherwise, only the specified VMs will be created.
+	LongCreateDesc = `Creates the virtual machines specified by name. 
+If no names are provided, all virtual machines in the environment will be created.
 
 Example:
 - wormhole create
@@ -22,4 +20,11 @@ If no names are provided, all running virtual machines in the environment will b
 Example:
 - wormhole stop               
 - wormhole stop node0 node1`
+
+	LongResumeDesc = `Resumes the virtual machines specified by name. 
+If no names are provided, all stopped virtual machines in the environment will be resumed.
+
+Example:
+- wormhole resume               
+- wormhole resume node0 node1`
 )
