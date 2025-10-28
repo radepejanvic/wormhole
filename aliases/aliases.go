@@ -2,10 +2,12 @@ package aliases
 
 // General command aliases
 const (
-	SetupAlias = "setup"
+	SetupAlias  = "setup"
+	CreateAlias = "create"
 )
 
 // Specific command aliases
 var (
-	SetupAliases = []string{SetupAlias}
+	SetupAliases  = []string{SetupAlias}
+	CreateAliases = []string{CreateAlias}
 )
