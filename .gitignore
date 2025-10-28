@@ -40,3 +40,5 @@ go.work
 *.box
 
 # End of https://www.toptal.com/developers/gitignore/api/vagrant
+
+commands.md

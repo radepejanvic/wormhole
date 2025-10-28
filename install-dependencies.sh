@@ -1,0 +1,40 @@
+# Add Docker's official GPG key:
+apt-get update
+apt-get -y install ca-certificates curl
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+
+# Install the Docker packages
+apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Start Docker service 
+if ! systemctl is-active --quiet docker; then
+  systemctl start docker
+fi
+
+# Add vagrant user to docker group
+usermod -aG docker vagrant
+
+# Install remaining packages
+apt-get update 
+apt-get -y install git golang-go
+
+# Cloning c12s/tools repository if it doesn't exist
+if [ ! -d "/home/vagrant/tools/.git" ]; then
+  cd /home/vagrant
+  rm -rf tools
+  git clone https://github.com/c12s/tools.git
+  cd tools
+fi
+
+# Installing remaining c12s dependencies
+cd /home/vagrant/tools
+bash install.sh 

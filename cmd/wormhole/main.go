@@ -1,17 +1,28 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
-	config "github.com/c12s/wormhole/internal/config"
+	"github.com/c12s/wormhole/internal/backends"
+	"github.com/c12s/wormhole/internal/core"
 )
 
 func main() {
-	conf, err := config.NewFromYaml("test.yaml")
+	conf, err := core.LoadFromYaml("config.yaml")
 	if err != nil {
-		log.Fatalf("%v", err)
+		log.Fatalf("Failed to load config: %v", err)
 	}
 
-	fmt.Printf("%q", conf.OSDistro)
+	backend, err := backends.NewVagrantBackend()
+	if err != nil {
+		log.Fatalf("Vagrant Backend initialization failed: %v", err)
+	}
+
+	if err := backend.Setup(conf); err != nil {
+		log.Fatalf("Setup failed: %v", err)
+	}
+
+	if err := backend.Create(); err != nil {
+		log.Fatalf("Create failed: %v", err)
+	}
 }

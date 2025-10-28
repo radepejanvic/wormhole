@@ -1,0 +1,49 @@
+package types
+
+import (
+	"fmt"
+)
+
+type Config struct {
+	VMCount      int    `yaml:"vmCount"`
+	OSDistro     string `yaml:"osDistro"`
+	OSVersion    string `yaml:"osVersion"`
+	CPUs         int    `yaml:"cpus"`
+	Memory       int    `yaml:"memory"`
+	GUI          bool   `yaml:"gui"`
+	IPBase       string `yaml:"ipBase"`
+	GuestPort    int    `yaml:"guestPort"`
+	HostPortBase int    `yaml:"hostPortBase"`
+	NameBase     string `yaml:"nameBase"`
+}
+
+func (conf *Config) Validate() error {
+	if conf.VMCount <= 0 {
+		return fmt.Errorf("vmCount must be greater than 0")
+	}
+	if conf.OSDistro == "" {
+		return fmt.Errorf("osDistro cannot be empty")
+	}
+	if conf.OSVersion == "" {
+		return fmt.Errorf("osVersion cannot be empty")
+	}
+	if conf.CPUs <= 0 {
+		return fmt.Errorf("cpus must be greater than 0")
+	}
+	if conf.Memory <= 0 {
+		return fmt.Errorf("memory must be greater than 0")
+	}
+	if conf.IPBase == "" {
+		return fmt.Errorf("ipBase cannot be empty")
+	}
+	if conf.NameBase == "" {
+		return fmt.Errorf("nameBase cannot be empty")
+	}
+	if conf.GuestPort < 1024 || conf.GuestPort > 65535 {
+		return fmt.Errorf("guestPort must be between 1024 and 65535")
+	}
+	if conf.HostPortBase < 1024 || conf.HostPortBase > 65535 {
+		return fmt.Errorf("hostPortBase must be between 1024 and 65535")
+	}
+	return nil
+}

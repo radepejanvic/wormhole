@@ -1,4 +1,0 @@
-nodeCount: 3  
-osDistro: "ubuntu/trusty64"
-baseAddress: "192.168.56."
-basePort: 11000
