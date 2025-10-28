@@ -6,6 +6,7 @@ const (
 	CreateAlias = "create"
 	StopAlias   = "stop"
 	ResumeAlias = "resume"
+	ReloadAlias = "reload"
 )
 
 // Specific command aliases
@@ -14,4 +15,5 @@ var (
 	CreateAliases = []string{CreateAlias}
 	StopAliases   = []string{StopAlias}
 	ResumeAliases = []string{ResumeAlias}
+	ReloadAliases = []string{ReloadAlias}
 )

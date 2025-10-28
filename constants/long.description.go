@@ -27,4 +27,11 @@ If no names are provided, all stopped virtual machines in the environment will b
 Example:
 - wormhole resume               
 - wormhole resume node0 node1`
+
+	LongReloadDesc = `Reloads the specified virtual machines, applying any updated configuration. 
+If no VM names are provided, all virtual machines in the environment will be reloaded.
+
+Example:
+- wormhole reload               
+- wormhole reload node0 node1`
 )
