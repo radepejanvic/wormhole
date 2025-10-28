@@ -8,6 +8,7 @@ const (
 	ResumeAlias   = "resume"
 	ReloadAlias   = "reload"
 	ShutDownAlias = "shutdown"
+	DestroyAlias  = "destroy"
 )
 
 // Specific command aliases
@@ -18,4 +19,5 @@ var (
 	ResumeAliases   = []string{ResumeAlias}
 	ReloadAliases   = []string{ReloadAlias}
 	ShutDownAliases = []string{ShutDownAlias}
+	DestroyAliases  = []string{DestroyAlias}
 )

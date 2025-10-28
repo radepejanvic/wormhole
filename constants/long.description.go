@@ -41,4 +41,12 @@ If no VM names are provided, all virtual machines in the environment will be sto
 Example:
 - wormhole stop
 - wormhole stop node0 node1`
+
+	LongDestroyDesc = `Permanently destroy one or more virtual machines and clean up all associated resources. 
+If no names are provided, all virtual machines defined in the environment will be destroyed. 
+Use with caution, as this operation cannot be undone.
+
+Example:
+- wormhole destroy
+- wormhole destroy node0 node1`
 )
