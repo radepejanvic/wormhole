@@ -34,4 +34,11 @@ If no VM names are provided, all virtual machines in the environment will be rel
 Example:
 - wormhole reload               
 - wormhole reload node0 node1`
+
+	LongShutDownDesc = `Stops the specified virtual machines gracefully. 
+If no VM names are provided, all virtual machines in the environment will be stopped.
+
+Example:
+- wormhole stop
+- wormhole stop node0 node1`
 )
