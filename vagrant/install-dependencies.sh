@@ -24,8 +24,12 @@ fi
 usermod -aG docker vagrant
 
 # Install remaining packages
-apt-get update 
-apt-get -y install git golang-go
+# apt-get update 
+# apt-get -y install git golang-go
+
+add-apt-repository ppa:longsleep/golang-backports -y
+apt-get update
+apt-get install -y golang-go git
 
 # Cloning c12s/tools repository if it doesn't exist
 if [ ! -d "/home/vagrant/tools/.git" ]; then

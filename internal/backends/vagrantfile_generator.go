@@ -13,7 +13,7 @@ import (
 var vagrantfileTemplate string
 
 const ipOffset = 100
-const vagrantfileDir = "."
+const vagrantfileDir = "./vagrant"
 
 type VM struct {
 	Name      string
