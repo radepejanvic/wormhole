@@ -24,9 +24,6 @@ fi
 usermod -aG docker vagrant
 
 # Install remaining packages
-# apt-get update 
-# apt-get -y install git golang-go
-
 add-apt-repository ppa:longsleep/golang-backports -y
 apt-get update
 apt-get install -y golang-go git
