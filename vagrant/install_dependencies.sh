@@ -36,6 +36,19 @@ if [ ! -d "/home/vagrant/tools/.git" ]; then
   cd tools
 fi
 
-# Installing remaining c12s dependencies
+# Installing remaining c12s packages
 cd /home/vagrant/tools
 bash install.sh 
+
+# Configuring node.env
+cd /home/vagrant/tools
+STAR_HOSTNAME=$(hostname)
+NATS_ADDRESS=$(ip route | grep -m1 192 | awk '{print $1}' | cut -d'.' -f1-3 | awk '{print $1".1"}') # address of the host machine
+BIND_ADDRESS=$(hostname -I | awk '{print $2}')
+
+sed -i "s|^STAR_HOSTNAME=.*|STAR_HOSTNAME=${STAR_HOSTNAME}|" node.env
+sed -i "s|^NATS_ADDRESS=.*|NATS_ADDRESS=${NATS_ADDRESS}:4222|" node.env
+sed -i "s|^BIND_ADDRESS=.*|BIND_ADDRESS=${BIND_ADDRESS}|" node.env
+
+# Setting execution permissions
+chmod +x ./node_start.sh
