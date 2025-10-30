@@ -2,6 +2,9 @@ package backends
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
 
 	"github.com/bmatcuk/go-vagrant"
 	"github.com/c12s/wormhole/internal/config"
@@ -122,5 +125,38 @@ func (v *VagrantBackend) Destroy(vms ...string) error {
 		return fmt.Errorf("vagrant error: %w", cmd.Error)
 	}
 
+	return nil
+}
+
+func (v *VagrantBackend) StartNodes(vms ...string) error {
+	vagrantDir := filepath.Join(vagrantfileDir)
+
+	for _, vm := range vms {
+		cmd := exec.Command("vagrant", "ssh", "-t", vm, "-c", "bash /vagrant/node_start.sh")
+		cmd.Dir = vagrantDir
+
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+
+		if err := cmd.Run(); err != nil {
+			return fmt.Errorf("failed to start node %s: %w", vm, err)
+		}
+	}
+	return nil
+}
+
+func (v *VagrantBackend) StopNodes(vms ...string) error {
+	vagrantDir := filepath.Join(vagrantfileDir)
+
+	for _, vm := range vms {
+		cmd := exec.Command("vagrant", "ssh", "-t", vm, "-c", "bash /vagrant/node_stop.sh")
+		cmd.Dir = vagrantDir
+		cmd.Stdout = nil
+		cmd.Stderr = nil
+
+		if err := cmd.Run(); err != nil {
+			return fmt.Errorf("failed to stop node %s: %w", vm, err)
+		}
+	}
 	return nil
 }

@@ -49,4 +49,20 @@ Use with caution, as this operation cannot be undone.
 Example:
 - wormhole destroy
 - wormhole destroy node0 node1`
+
+	LongStartNodesDesc = `Start the star service on one or more virtual machines defined in the environment. 
+If no names are provided, the service will be started on all available nodes. 
+This command runs the node_start.sh script inside each VM, initializing star and related components.
+
+Example:
+- wormhole start-nodes
+- wormhole start-nodes node0 node1`
+
+	LongStopNodesDesc = `Stop the star service on one or more virtual machines. 
+If no names are provided, the service will be stopped on all running nodes. 
+This command reads the star PID from each VM and terminates the process safely running the node_stop.sh.
+
+Example:
+- wormhole stop-nodes
+- wormhole stop-nodes node0 node1`
 )

@@ -15,6 +15,8 @@ type Backend interface {
 	Reload(vms ...string) error
 	ShutDown(vms ...string) error
 	Destroy(vms ...string) error
+	StartNodes(vms ...string) error
+	StopNodes(vms ...string) error
 }
 
 func NewBackend(name string) (Backend, error) {

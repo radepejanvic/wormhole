@@ -27,4 +27,6 @@ func init() {
 	RootCmd.AddCommand(ReloadCmd)
 	RootCmd.AddCommand(ShutDownCmd)
 	RootCmd.AddCommand(DestroyCmd)
+	RootCmd.AddCommand(StartNodesCmd)
+	RootCmd.AddCommand(StopNodesCmd)
 }
